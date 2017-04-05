@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteCond %{HTTP_COOKIE} !some_key=value;? [NC]
+RewriteCond %{HTTP_HOST} ^domain\.tld$ [OR,NC]
+RewriteCond %{HTTP_HOST} ^www\.domain\.tld$
+RewriteRule ^$ /redirect_target [L,R=301]
