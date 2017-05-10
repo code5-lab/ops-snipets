@@ -1,0 +1,53 @@
+#!/bin/bash
+# Domain information script
+
+#Quit if no argument supplied
+if [[ $# -eq 0 ]] ; then
+    echo 'No argument supplied. Exiting...'
+    exit 1
+fi
+
+#Save supplied argument in variable DOMAIN
+DOMAIN=$1
+
+#Domain General info (whois)
+echo "General and public information from whois:"
+whois DOMAIN | grep -w 'Registrant\|Admin\|Tech'
+echo "#################################"
+echo " "
+
+#SOA Record
+echo "SOA Records:"
+host -t soa DOMAIN
+echo "#################################"
+echo " "
+
+#A Records
+echo "A Records:"
+host -t a DOMAIN
+echo "#################################"
+echo " "
+
+#CNAME Records
+echo "CNAME Records:"
+host -t cname DOMAIN
+echo "#################################"
+echo " "
+
+#MX Records
+echo "MX Records:"
+host -t mx DOMAIN
+echo "#################################"
+echo " "
+
+#TXT Records
+echo "TXT Records:"
+host -t txt DOMAIN
+echo "#################################"
+echo " "
+
+#Name Servers
+echo "Name servers:"
+host -t ns DOMAIN
+echo "#################################"
+echo " "
